@@ -1,0 +1,25 @@
+.form{
+  background-image: url('./assets/bgImg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.form::before {    
+  content: "";
+  background-color: rgba(50, 50, 50, 0.9);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.5;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
