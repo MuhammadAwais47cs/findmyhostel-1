@@ -3,7 +3,6 @@
   background-size: cover;
   background-position: center;
 }
-
 .form::before {    
   content: "";
   background-color: rgba(50, 50, 50, 0.9);
@@ -13,6 +12,11 @@
   bottom: 0px;
   left: 0px;
   opacity: 0.5;
+}
+
+.radio input:checked ~ label {
+  background-color: #f00;
+  color: white;
 }
 
 @keyframes App-logo-spin {

@@ -10,7 +10,7 @@ const Form = ({
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('submit', e.target.elements)
-    const { username, password, repeatPassword, email } = e.target.elements
+    const { username, password, repeatPassword, email, userType } = e.target.elements
     const checkEmpty = isSignIn ? [username, password] : [username, password, repeatPassword, email]
     const isEmpty = checkEmpty.some((item) => item.value === '')
     if (isEmpty) {
@@ -23,7 +23,8 @@ const Form = ({
           const user = {
             username: username.value,
             password: password.value,
-            email: email.value
+            email: email.value,
+            userType: userType.value
           }
           const users = JSON.parse(localStorage.getItem('users')) || []
           const isUserExist = users.some((item) => item.username === username.value)
@@ -41,7 +42,9 @@ const Form = ({
           const users = JSON.parse(localStorage.getItem('users')) || []
           const isUserExist = users.some((item) => item.username === username.value && item.password === password.value)
           if (isUserExist) {
+            const user = users.find((item) => item.username === username.value && item.password === password.value)
             alert('Logged in successfully')
+            localStorage.setItem('user', JSON.stringify(user))
             navigate('/')
           } else {
             alert('Invalid username or password')
@@ -76,13 +79,44 @@ const Form = ({
                   <label className='text-white font-medium'>REPEAT PASSWORD</label>
                   <input name='repeatPassword' type='password' className='border border-gray-300 rounded-full py-[10px] px-4 mt-2' placeholder='Repeat Password' required />
                 </div>
-                <div className='flex flex-col w-full '>
+                <div className='flex flex-col w-full mb-4'>
                   <label className='text-white font-medium'>EMAIL ADDRESS</label>
                   <input name='email' type='email' className='border border-gray-300 rounded-full py-[10px] px-4 mt-2' placeholder='Enter Email Address' required />
                 </div>
-              </>
-            )
-          }
+                <div className='text-white font-medium mb-2'>SIGN UP AS A</div>
+                <div className="inline-block radio">
+                  <input
+                    name="userType"
+                    type="radio"
+                    id="user"
+                    hidden="hidden"
+                    value="user"
+                    checked
+                  />
+                  <label
+                    htmlFor="user"
+                    className="px-2 py-1 rounded-lg flex justify-center items-center text-sm font-bold cursor-pointer border mr-3"
+                  >
+                    User
+                  </label>
+                </div>
+                <div className="inline-block radio">
+                  <input
+                    name="userType"
+                    type="radio"
+                    id="manager"
+                    hidden="hidden"
+                    value="manager"
+                  />
+                  <label
+                    htmlFor="manager"
+                    className="px-2 py-1 rounded-lg flex justify-center items-center text-sm font-bold cursor-pointer border"
+                  >
+                    Manager
+                  </label>
+                </div>
+                </>
+            )}
           {
             isSignIn && (
               <div className='flex justify-between items-center mt-8'>

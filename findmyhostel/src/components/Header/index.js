@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
 
@@ -25,11 +26,16 @@ const Header = () => {
     }
   ]
 
+  const navigate = useNavigate()
+
   return (
     <div>
       <div className=' h-8 w-screen bg-red-300 flex items-center px-16'>
         <div className='mr-12'>Call us: 0900393743</div>
         <div>Chat us: area.wa</div>
+        <div className=' ml-auto'>
+          <span className=' cursor-pointer' onClick={() => navigate('/login')}>Login</span> / <span className=' cursor-pointer' onClick={() => navigate('/register')}>Register</span>
+        </div>
       </div>
       <div className='bg-white shadow-sm py-6 px-16 flex items-center justify-between'>
         <div className=' text-6xl text-red-900 font-medium'>HBM</div>

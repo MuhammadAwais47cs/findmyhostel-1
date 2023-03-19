@@ -3,6 +3,7 @@ import Header from '../../components/Header'
 import bgImg from '../../assets/bgImg.jpg'
 import Card from '../../components/Card'
 import { data } from './data'
+import Footer from '../../components/Footer'
 
 const Main = () => {
   const [showForm, setShowForm] = useState(false)
@@ -110,31 +111,35 @@ const Main = () => {
               />
             ))
           }
-          <form onSubmit={(e) => handleSubmit(e)}>
-            {
-              showForm ? (
-                <div className='w-[400px] border mb-12 h-[575px] flex flex-col justify-center'>
-                  <div className=' px-6 py-6'>
-                    <div className=' text-sm text-blue-500 mb-2'><input type={'text'} name={'tag'} className="border p-[2px]" placeholder='Enter tag name' req /></div>
-                    <div className=' text-xl mb-2'><input type={'text'} name={'title'} className="border p-[2px]" placeholder='Enter title' required /></div>
-                    <div className=' text-md text-gray-700'><input type={'text'} name={'address'} className="border p-[2px]" placeholder='Enter address' required /></div>
+          {
+            JSON.parse(localStorage.getItem('user'))?.userType === 'manager' && (
+            <form onSubmit={(e) => handleSubmit(e)}>
+              {
+                showForm ? (
+                  <div className='w-[400px] border mb-12 h-[575px] flex flex-col justify-center'>
+                    <div className=' px-6 py-6'>
+                      <div className=' text-sm text-blue-500 mb-2'><input type={'text'} name={'tag'} className="border p-[2px]" placeholder='Enter tag name' req /></div>
+                      <div className=' text-xl mb-2'><input type={'text'} name={'title'} className="border p-[2px]" placeholder='Enter title' required /></div>
+                      <div className=' text-md text-gray-700'><input type={'text'} name={'address'} className="border p-[2px]" placeholder='Enter address' required /></div>
+                    </div>
+                    <div className=' h-[250px] bg-gray-100 flex justify-center items-center'><input name={'image'} className="border p-[2px]" title='Upload Image' type="file" id="img" accept="image/*" required /></div>
+                    <div className=' px-6 pt-6'>
+                      <div className=' text-md text-gray-700 pb-2 border-b border-black flex flex-wrap items-center'>Beds: <input type={'number'} name={'beds'} className="border p-[2px] w-[60px] ml-2" placeholder='Beds' required /> / Bath: <input type={'number'} name={'bath'} className="border p-[2px] w-[60px] ml-2" placeholder='bath' required /> / Sq Ft: <input type={'number'} name={'sqft'} className="border p-[2px] w-[60px] ml-2" placeholder='Sq Ft' required /></div>
+                      <div className=' text-2xl text-gray-800 my-4'>$<input type={'number'} name={'price'} className="border p-[2px] text-lg" placeholder='Enter price' required /></div>
+                    </div>
+                    <div className=' bg-gray-100 flex justify-between items-center p-6 '>
+                      <div><input type={'text'} name={'name'} className="border px-[2px]" placeholder='Enter your name' required /></div>
+                      <button className=' bg-red-300 px-4 hover:bg-red-500 hover:text-white' type='submit'>Add Hostel</button>
+                    </div>
                   </div>
-                  <div className=' h-[250px] bg-gray-100 flex justify-center items-center'><input name={'image'} className="border p-[2px]" title='Upload Image' type="file" id="img" accept="image/*" required /></div>
-                  <div className=' px-6 pt-6'>
-                    <div className=' text-md text-gray-700 pb-2 border-b border-black flex flex-wrap items-center'>Beds: <input type={'number'} name={'beds'} className="border p-[2px] w-[60px] ml-2" placeholder='Beds' required /> / Bath: <input type={'number'} name={'bath'} className="border p-[2px] w-[60px] ml-2" placeholder='bath' required /> / Sq Ft: <input type={'number'} name={'sqft'} className="border p-[2px] w-[60px] ml-2" placeholder='Sq Ft' required /></div>
-                    <div className=' text-2xl text-gray-800 my-4'>$<input type={'number'} name={'price'} className="border p-[2px] text-lg" placeholder='Enter price' required /></div>
+                ) :
+                  <div className='w-[400px] border mb-12 h-[575px] flex flex-col justify-center'>
+                    <div className='text-xl font-bold text-red-900 border border-dashed text-center p-2 cursor-pointer hover:bg-red-900 hover:text-white transition-all ease-linear duration-300' onClick={() => setShowForm(true)}>+ Add new hostel</div>
                   </div>
-                  <div className=' bg-gray-100 flex justify-between items-center p-6 '>
-                    <div><input type={'text'} name={'name'} className="border px-[2px]" placeholder='Enter your name' required /></div>
-                    <button className=' bg-red-300 px-4 hover:bg-red-500 hover:text-white' type='submit'>Add Hostel</button>
-                  </div>
-                </div>
-              ) :
-                <div className='w-[400px] border mb-12 h-[575px] flex flex-col justify-center'>
-                  <div className='text-xl font-bold text-red-900 border border-dashed text-center p-2 cursor-pointer hover:bg-red-900 hover:text-white transition-all ease-linear duration-300' onClick={() => setShowForm(true)}>+ Add new hostel</div>
-                </div>
-            }
-          </form>
+              }
+            </form>
+            )
+          }
         </div>
       </div>
 
@@ -166,12 +171,7 @@ const Main = () => {
       </div>
 
       {/* Footer */}
-      <div className='bg-gray-50 py-12'>
-        <div className='max-w-[1440px] mx-auto flex justify-between items-center h-[300px]'>
-          <div className=''>© 2021 FindMyHostel. All rights reserved.</div>
-          <div className=''>Terms of Use | Privacy Policy</div>
-        </div>
-      </div>
+      <Footer/>
     </>
   )
 }
