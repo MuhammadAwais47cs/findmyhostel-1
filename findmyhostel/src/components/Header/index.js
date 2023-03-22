@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Header = () => {
 
@@ -10,7 +10,7 @@ const Header = () => {
     },
     {
       name: 'About',
-      link: '/about'
+      link: '/about-us'
     },
     {
       name: 'Hostels',
@@ -22,7 +22,7 @@ const Header = () => {
     },
     {
       name: 'Contact',
-      link: '/contact'
+      link: '/contact-us'
     }
   ]
 
@@ -43,7 +43,7 @@ const Header = () => {
           {
             menus.map((menu, index) => (
               <div className='text-red-900 text-xl font-semibold ml-6' key={index}>
-                <a href={menu.link}>{menu.name}</a>
+                <Link to={menu.link}>{menu.name}</Link>
               </div>
             ))
           }

@@ -78,10 +78,6 @@ const Main = () => {
 
   return (
     <>
-      {/* Header */}
-      <Header />
-
-
       {/* Background */}
       <div style={{ backgroundImage: `url(${bgImg})` }} className='bg-cover bg-center bg-no-repeat h-[600px]'></div>
 
@@ -169,9 +165,6 @@ const Main = () => {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <Footer/>
     </>
   )
 }
