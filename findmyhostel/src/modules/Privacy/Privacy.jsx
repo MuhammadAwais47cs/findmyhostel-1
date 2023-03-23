@@ -3,14 +3,21 @@ import { contentData } from "./data";
 function Privacy() {
   return (
     <>
-      <section className="bg-light ">
+      <section className=" h-[200px] bg-red-100 flex justify-center items-center">
+        <h1 className=" text-6xl font-bold">Privacy</h1>
+      </section>
+      <section className="text-gray-600 body-font mb-12">
         <div className="pt-5 mt-5"></div>
-        <div className="flex flex-col justify-center py-2  container mx-5 ">
+        <div className="container mx-auto flex px-5 py-24 md:flex-col flex-col items-center">
           {contentData.map(({ id, heading, para }) => (
             <>
               <div className=" md:pr-3" key={id}>
-                <h2 className="text-2xl font-medium py-3">{heading}</h2>
-                <p className="text-gray-600 md:pr-5 mr-5">{para} </p>
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+                  {heading}
+                </h1>
+                <p className="text-gray-600 md:pr-5 mr-5 mb-5 text-lg">
+                  {para}{" "}
+                </p>
               </div>
             </>
           ))}
