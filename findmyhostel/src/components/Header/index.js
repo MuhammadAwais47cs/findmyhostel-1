@@ -40,7 +40,7 @@ const Header = () => {
   const navigate = useNavigate();
   const toggle = (isLogin) => {
     setShowModel(!showModel);
-    isLogin === "register" && setLoginSignUp(!loginSignUp);
+    isLogin === "register" ? setLoginSignUp(false) : setLoginSignUp(true);
   };
   return (
     <div>
@@ -86,7 +86,7 @@ const Header = () => {
       </div>
       {showModel && (
         <Modal closeModel={toggle}>
-          <Form isSignIn={loginSignUp ? true : false} />
+          <Form isSignin={loginSignUp ? true : false} />
         </Modal>
       )}
     </div>

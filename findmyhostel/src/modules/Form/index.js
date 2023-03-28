@@ -3,8 +3,8 @@ import "../../App.css";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal";
 
-const Form = () => {
-  const [isSignIn, setIsSignIn] = useState(true);
+const Form = ({ isSignin }) => {
+  const [isSignIn, setIsSignIn] = useState(isSignin);
   const [loginSignUp, setLoginSignUp] = useState(true);
   const navigate = useNavigate();
   const toggle = (isLogin) => {
