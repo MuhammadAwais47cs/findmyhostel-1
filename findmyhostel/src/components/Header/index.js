@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Form from "../../modules/Form";
+import Modal from "../Modal/index";
 
 const Header = () => {
+  const [showModel, setShowModel] = useState(false);
+  const [loginSignUp, setLoginSignUp] = useState(true);
   const menus = [
     {
       name: "Home",
@@ -34,21 +38,21 @@ const Header = () => {
     },
   ];
   const navigate = useNavigate();
-
+  const toggle = (isLogin) => {
+    setShowModel(!showModel);
+    isLogin === "register" && setLoginSignUp(!loginSignUp);
+  };
   return (
     <div>
       <div className=" h-8 w-screen bg-red-300 flex items-center px-16">
         <div className="mr-12">Call us: 0900393743</div>
         <div>Chat us: area.wa</div>
         <div className=" ml-auto">
-          <span className=" cursor-pointer" onClick={() => navigate("/login")}>
+          <span className=" cursor-pointer" onClick={() => toggle("login")}>
             Login
           </span>{" "}
           /{" "}
-          <span
-            className=" cursor-pointer"
-            onClick={() => navigate("/register")}
-          >
+          <span className=" cursor-pointer" onClick={() => toggle("register")}>
             Register
           </span>
         </div>
@@ -80,6 +84,11 @@ const Header = () => {
           ))}
         </div>
       </div>
+      {showModel && (
+        <Modal closeModel={toggle}>
+          <Form isSignIn={loginSignUp ? true : false} />
+        </Modal>
+      )}
     </div>
   );
 };
