@@ -12,7 +12,7 @@ function Privacy() {
           {contentData.map(({ id, heading, para }) => (
             <>
               <div className=" md:pr-3" key={id}>
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+                <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
                   {heading}
                 </h1>
                 <p className="text-gray-600 md:pr-5 mr-5 mb-5 text-lg">
